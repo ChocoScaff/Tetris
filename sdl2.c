@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "iut_sdl2.h"
+#include "sdl2.h"
 
 const Uint8 *etatClavier;
 
