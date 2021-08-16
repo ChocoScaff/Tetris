@@ -20,6 +20,9 @@ int main ( int argc, char** argv )
     Ecran ecran = creationEcran();
     // création de l'image de la balle en mémoire
     Image cube = creationImage("cube.bmp");
+    Image menu = creationImage("menu.bmp");
+
+    SDL_Event event;
 
     xcube1=(X_SCREEN/2);
     ycube1=0;
@@ -31,6 +34,16 @@ int main ( int argc, char** argv )
                 Grille[i][j]=0;
             }
         }
+    dessineImage(ecran,0,0,menu);
+    miseAJourEcran(ecran);
+    effaceEcran(ecran);
+    while(!fin)
+    {
+        evenements();
+        SDL_WaitEvent(&event);
+        fin = etatClavier[SDL_SCANCODE_SPACE];
+    }
+    fin=0;
     // tant que fin n'est pas vrai
     while (!fin)
     {
@@ -122,7 +135,7 @@ int main ( int argc, char** argv )
                 }
             }
         }
-        if ((ycube1 >= Y_SCREEN-hauteurTile) || (ycube2 >= Y_SCREEN-hauteurTile) || (ycube3 >= Y_SCREEN-hauteurTile) || (ycube4 >= Y_SCREEN-hauteurTile) || (etat2 == 1))
+        if ((ycube1 == Y_SCREEN-hauteurTile) || (ycube2 == Y_SCREEN-hauteurTile) || (ycube3 == Y_SCREEN-hauteurTile) || (ycube4 == Y_SCREEN-hauteurTile) || (etat2 == 1))
         {
             Grille[xcube1][ycube1]=1;
             Grille[xcube2][ycube2]=1;
