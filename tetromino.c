@@ -361,7 +361,7 @@ int positionXJTetromino(int numero,int X, int etat)
 {
     if (etat == 1)
     {
-        return X+largeurTile*(numero-2);
+        return X-largeurTile*(numero-2);
     }
     if (etat == 2)
     {
@@ -369,7 +369,7 @@ int positionXJTetromino(int numero,int X, int etat)
     }
     if (etat == 3)
     {
-        return X-largeurTile*(numero-2);
+        return X+largeurTile*(numero-2);
     }
     if (etat == 4)
     {

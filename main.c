@@ -2,9 +2,11 @@
 #include "sdl2.h"
 #include "tetromino.h"
 
+
 int main ( int argc, char** argv )
 {
-    char fin = 0;
+    char fin = 1;
+    char continuer=1;
     int xcube1, ycube1,xcube2, ycube2,xcube3, ycube3,xcube4, ycube4;
     char etat=1;//position
     char latence=10;
@@ -14,14 +16,14 @@ int main ( int argc, char** argv )
     char Grille[X_SCREEN][Y_SCREEN];
     char vitesseTetromino=100;
     char tetromino=1;
-    int score;
+    int score=0;
     srand(time(NULL));
+
     // création de l'écran graphique
     Ecran ecran = creationEcran();
     // création de l'image de la balle en mémoire
     Image cube = creationImage("cube.bmp");
     Image menu = creationImage("menu.bmp");
-
     SDL_Event event;
 
     xcube1=(X_SCREEN/2);
@@ -37,20 +39,33 @@ int main ( int argc, char** argv )
     dessineImage(ecran,0,0,menu);
     miseAJourEcran(ecran);
     effaceEcran(ecran);
-    while(!fin)
+
+    while(continuer == 1 && fin == 1)
     {
-        evenements();
+        etatClavier = SDL_GetKeyboardState(NULL);
         SDL_WaitEvent(&event);
-        fin = etatClavier[SDL_SCANCODE_SPACE];
+        if (etatClavier[SDL_SCANCODE_SPACE])
+        {
+            continuer=2;
+        }
+        if (etatClavier[SDL_SCANCODE_ESCAPE] )
+        {
+            fin=0;
+        }
     }
-    fin=0;
+    destructionImage(menu);
+
     // tant que fin n'est pas vrai
-    while (!fin)
+    while (continuer==2 && fin ==1)
     {
         // mise à jour des événements (clavier et souris)
         evenements();
         // si on appuie sur la touche "Echap" on termine le programme
-        fin = etatClavier[SDL_SCANCODE_ESCAPE];
+        if (etatClavier[SDL_SCANCODE_ESCAPE] || !SDL_WINDOWEVENT_CLOSE)
+        {
+            fin=0;
+        }
+
 
         if (etatClavier[SDL_SCANCODE_RIGHT])
         {
@@ -61,24 +76,78 @@ int main ( int argc, char** argv )
             }
             else
             {
+
+                for(i=0;i<X_SCREEN;i=i+largeurTile)
+                {
+                    for(j=0;j<Y_SCREEN;j=j+hauteurTile)
+                    {
+                        if (Grille[i][j] == 1)
+                        {
+                            if (xcube1 == i-largeurTile && ycube1 == j)
+                            {
+                                xcube1=xcube1-largeurTile;
+                            }
+                            if (xcube2 == i-largeurTile && ycube2 == j)
+                            {
+                                xcube1=xcube1-largeurTile;
+                            }
+                            if (xcube3 == i-largeurTile && ycube3 == j)
+                            {
+                                xcube1=xcube1-largeurTile;
+                            }
+                            if (xcube4 == i-largeurTile && ycube4 == j)
+                            {
+                                xcube1=xcube1-largeurTile;
+                            }
+                        }
+                    }
+                }
                 xcube1=xcube1+largeurTile;
             }
+
         }
         if (etatClavier[SDL_SCANCODE_LEFT])
         {
             SDL_Delay(50);
             if (xcube1 == 0 || xcube2 == 0 || xcube3 ==0 || xcube4==0)
             {
+
                 xcube1=xcube1;
             }
             else
             {
+                //xcube1=xcube1-largeurTile;
+                for(i=0;i<X_SCREEN;i=i+largeurTile)
+                {
+                    for(j=0;j<Y_SCREEN;j=j+hauteurTile)
+                    {
+                        if (Grille[i][j] == 1)
+                        {
+                            if (xcube1 == i+largeurTile && ycube1 == j)
+                            {
+                                xcube1=xcube1+largeurTile;
+                            }
+                            if (xcube2 == i+largeurTile && ycube2 == j)
+                            {
+                                xcube1=xcube1+largeurTile;
+                            }
+                            if (xcube3 == i+largeurTile && ycube3 == j)
+                            {
+                                xcube1=xcube1+largeurTile;
+                            }
+                            if (xcube4 == i+largeurTile && ycube4 == j)
+                            {
+                                xcube1=xcube1+largeurTile;
+                            }
+                        }
+                    }
+                }
                 xcube1=xcube1-largeurTile;
             }
         }
         if (etatClavier[SDL_SCANCODE_DOWN])
         {
-            if ((ycube1 >= Y_SCREEN-hauteurTile) || (ycube2 >= Y_SCREEN-hauteurTile) || (ycube3 >= Y_SCREEN-hauteurTile) || (ycube4 >= Y_SCREEN-hauteurTile))
+            if ((ycube1 >= Y_SCREEN) || (ycube2 >= Y_SCREEN) || (ycube3 >= Y_SCREEN) || (ycube4 >= Y_SCREEN))
             {
                 ycube1=ycube1;
             }
@@ -128,22 +197,23 @@ int main ( int argc, char** argv )
             {
                 if (Grille[i][j] == 1)
                 {
-                    if ((ycube1+hauteurTile == j && xcube1 == i) || (ycube2+hauteurTile == j && xcube2 == i) || (ycube3+hauteurTile == j && xcube3 == i) || (ycube4+hauteurTile == j && xcube4 == i))
+                    if ((ycube1 == j && xcube1 == i) || (ycube2 == j && xcube2 == i) || (ycube3 == j && xcube3 == i) || (ycube4 == j && xcube4 == i))
                     {
                         etat2=1;
                     }
                 }
             }
         }
-        if ((ycube1 == Y_SCREEN-hauteurTile) || (ycube2 == Y_SCREEN-hauteurTile) || (ycube3 == Y_SCREEN-hauteurTile) || (ycube4 == Y_SCREEN-hauteurTile) || (etat2 == 1))
+        if ((ycube1 == Y_SCREEN) || (ycube2 == Y_SCREEN) || (ycube3 == Y_SCREEN) || (ycube4 == Y_SCREEN) || (etat2 == 1))
         {
-            Grille[xcube1][ycube1]=1;
-            Grille[xcube2][ycube2]=1;
-            Grille[xcube3][ycube3]=1;
-            Grille[xcube4][ycube4]=1;
+            Grille[xcube1][ycube1-hauteurTile]=1;
+            Grille[xcube2][ycube2-hauteurTile]=1;
+            Grille[xcube3][ycube3-hauteurTile]=1;
+            Grille[xcube4][ycube4-hauteurTile]=1;
             ycube1 = 0;
             xcube1 = (X_SCREEN/2-largeurTile);
             tetromino=valeurTetromino();
+            //SDL_Delay(10);
             //cube=couleurTetromino(cube,tetromino);
             etat=1;
             etat2=0;
@@ -159,6 +229,7 @@ int main ( int argc, char** argv )
             {
                 if(Grille[0][j] && Grille[largeurTile][j] && Grille[largeurTile*2][j] && Grille[largeurTile*3][j] && Grille[largeurTile*4][j] && Grille[largeurTile*5][j] && Grille[largeurTile*6][j] && Grille[largeurTile*7][j] && Grille[largeurTile*8][j] && Grille[largeurTile*9][j] && Grille[largeurTile*10][j] && Grille[largeurTile*11][j])
                 {
+                    score=score+20;
                     Grille[0][j]=0;
                     Grille[largeurTile][j]=0;
                     Grille[largeurTile*2][j]=0;
@@ -171,6 +242,7 @@ int main ( int argc, char** argv )
                     Grille[largeurTile*9][j]=0;
                     Grille[largeurTile*10][j]=0;
                     Grille[largeurTile*11][j]=0;
+                    SDL_Delay(100);
                     for(k=j;k>0;k=k-hauteurTile)
                     {
                         for(i=0;i<X_SCREEN;i=i+largeurTile)
@@ -210,13 +282,14 @@ int main ( int argc, char** argv )
         ycube1=Tetrominodescent(ycube1,compte,vitesseTetromino);
         for(i=0;i<X_SCREEN;i=i+largeurTile)
         {
-            if (Grille[i][0] == 1)
+            if (Grille[i][-hauteurTile] == 1)
             {
-                fin = 1;
+                continuer=3;
             }
         }
     }
     SDL_Delay(200);
+    printf("Votre score %d\n",score);
     // vide des images en mémoire
     destructionImage(cube);
     // ferme la fenêtre
