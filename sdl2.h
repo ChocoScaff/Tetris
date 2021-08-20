@@ -1,6 +1,3 @@
-#ifndef IUT_SDL2_H_INCLUDED
-#define IUT_SDL2_H_INCLUDED
-
 #include <SDL2/SDL.h>
 
 #define largeurTile 40
@@ -25,5 +22,3 @@ int hautImage(Image image);
 void destructionImage(Image image);
 void destructionEcran(Ecran ecran);
 void evenements(void);
-
-#endif // IUT_SDL_H_INCLUDED
