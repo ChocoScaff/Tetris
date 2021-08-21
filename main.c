@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "sdl2.h"
 #include "tetromino.h"
 
@@ -29,18 +28,10 @@ int main ( int argc, char** argv )
     xcube1=(X_SCREEN/2);
     ycube1=0;
 
-    for(i=0;i<X_SCREEN;i=i+largeurTile)
-        {
-            for(j=0;j<Y_SCREEN;j=j+hauteurTile)
-            {
-                Grille[i][j]=0;
-            }
-        }
     dessineImage(ecran,0,0,menu);
     miseAJourEcran(ecran);
     effaceEcran(ecran);
 
-    //Image cube = creationImage("Ressource/cube.bmp");
     Image cubeI = creationImage("Ressource/cubeI.bmp");
     Image cubeJ = creationImage("Ressource/cubeJ.bmp");
     Image cubeL = creationImage("Ressource/cubeL.bmp");
@@ -223,8 +214,6 @@ int main ( int argc, char** argv )
             xcube1 = (X_SCREEN/2-largeurTile);
             tetromino=valeurTetromino();
             color=colorTetromino(tetromino);
-            //SDL_Delay(10);
-            //cube=couleurTetromino(cube,tetromino);
             etat=1;
             etat2=0;
             if (vitesseTetromino == 1)
