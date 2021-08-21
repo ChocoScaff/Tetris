@@ -300,7 +300,7 @@ int main ( int argc, char** argv )
         ycube1=Tetrominodescent(ycube1,compte,vitesseTetromino);
         for(i=0;i<X_SCREEN;i=i+largeurTile)
         {
-            if (Grille[i][-hauteurTile] == 1)
+            if (Grille[i][-hauteurTile] == 1 || Grille[i][-hauteurTile] == 2 || Grille[i][-hauteurTile] == 3 || Grille[i][-hauteurTile] == 4 || Grille[i][-hauteurTile] == 5 || Grille[i][-hauteurTile] == 6 || Grille[i][-hauteurTile] == 7 )
             {
                 continuer=3;
             }
@@ -321,4 +321,3 @@ int main ( int argc, char** argv )
 
     return 0;
 }
-
