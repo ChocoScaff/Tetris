@@ -1,7 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "sdl2.h"
 #include "tetromino.h"
-
 
 int main ( int argc, char** argv )
 {
@@ -17,13 +17,13 @@ int main ( int argc, char** argv )
     char vitesseTetromino=100;
     char tetromino=1;
     int score=0;
+    char color=1;
     srand(time(NULL));
 
     // création de l'écran graphique
     Ecran ecran = creationEcran();
     // création de l'image de la balle en mémoire
-    Image cube = creationImage("cube.bmp");
-    Image menu = creationImage("menu.bmp");
+    Image menu = creationImage("Ressource/menu.bmp");
     SDL_Event event;
 
     xcube1=(X_SCREEN/2);
@@ -39,6 +39,15 @@ int main ( int argc, char** argv )
     dessineImage(ecran,0,0,menu);
     miseAJourEcran(ecran);
     effaceEcran(ecran);
+
+    //Image cube = creationImage("Ressource/cube.bmp");
+    Image cubeI = creationImage("Ressource/cubeI.bmp");
+    Image cubeJ = creationImage("Ressource/cubeJ.bmp");
+    Image cubeL = creationImage("Ressource/cubeL.bmp");
+    Image cubeO = creationImage("Ressource/cubeO.bmp");
+    Image cubeS = creationImage("Ressource/cubeS.bmp");
+    Image cubeT = creationImage("Ressource/cubeT.bmp");
+    Image cubeZ = creationImage("Ressource/cubeZ.bmp");
 
     while(continuer == 1 && fin == 1)
     {
@@ -81,7 +90,7 @@ int main ( int argc, char** argv )
                 {
                     for(j=0;j<Y_SCREEN;j=j+hauteurTile)
                     {
-                        if (Grille[i][j] == 1)
+                        if (Grille[i][j] == 1 || Grille[i][j] == 2 || Grille[i][j] == 3 || Grille[i][j] == 4 || Grille[i][j] == 5 || Grille[i][j] == 6 || Grille[i][j] == 7)
                         {
                             if (xcube1 == i-largeurTile && ycube1 == j)
                             {
@@ -121,7 +130,7 @@ int main ( int argc, char** argv )
                 {
                     for(j=0;j<Y_SCREEN;j=j+hauteurTile)
                     {
-                        if (Grille[i][j] == 1)
+                        if (Grille[i][j] == 1 || Grille[i][j] == 2 || Grille[i][j] == 3 || Grille[i][j] == 4 || Grille[i][j] == 5 || Grille[i][j] == 6 || Grille[i][j] == 7)
                         {
                             if (xcube1 == i+largeurTile && ycube1 == j)
                             {
@@ -159,7 +168,7 @@ int main ( int argc, char** argv )
         }
         if (etatClavier[SDL_SCANCODE_SPACE])
         {
-            SDL_Delay(50);
+            SDL_Delay(150);
             if (etat == 4)
             {
                 etat=1;
@@ -195,7 +204,7 @@ int main ( int argc, char** argv )
         {
             for(j=0;j<Y_SCREEN;j=j+hauteurTile)
             {
-                if (Grille[i][j] == 1)
+                if (Grille[i][j] == 1 || Grille[i][j] == 2 || Grille[i][j] == 3 || Grille[i][j] == 4 || Grille[i][j] == 5 || Grille[i][j] == 6 || Grille[i][j] == 7)
                 {
                     if ((ycube1 == j && xcube1 == i) || (ycube2 == j && xcube2 == i) || (ycube3 == j && xcube3 == i) || (ycube4 == j && xcube4 == i))
                     {
@@ -206,13 +215,14 @@ int main ( int argc, char** argv )
         }
         if ((ycube1 == Y_SCREEN) || (ycube2 == Y_SCREEN) || (ycube3 == Y_SCREEN) || (ycube4 == Y_SCREEN) || (etat2 == 1))
         {
-            Grille[xcube1][ycube1-hauteurTile]=1;
-            Grille[xcube2][ycube2-hauteurTile]=1;
-            Grille[xcube3][ycube3-hauteurTile]=1;
-            Grille[xcube4][ycube4-hauteurTile]=1;
+            Grille[xcube1][ycube1-hauteurTile]=color;
+            Grille[xcube2][ycube2-hauteurTile]=color;
+            Grille[xcube3][ycube3-hauteurTile]=color;
+            Grille[xcube4][ycube4-hauteurTile]=color;
             ycube1 = 0;
             xcube1 = (X_SCREEN/2-largeurTile);
             tetromino=valeurTetromino();
+            color=colorTetromino(tetromino);
             //SDL_Delay(10);
             //cube=couleurTetromino(cube,tetromino);
             etat=1;
@@ -247,11 +257,35 @@ int main ( int argc, char** argv )
                     {
                         for(i=0;i<X_SCREEN;i=i+largeurTile)
                         {
-                            if (Grille[i][k-hauteurTile] == 1)
+                            if (Grille[i][k-hauteurTile] == 7)
+                            {
+                                Grille[i][k]=7;
+                            }
+                            else if (Grille[i][k-hauteurTile] == 6)
+                            {
+                                Grille[i][k]=6;
+                            }
+                            else if (Grille[i][k-hauteurTile] == 5)
+                            {
+                                Grille[i][k]=5;
+                            }
+                            else if (Grille[i][k-hauteurTile] == 4)
+                            {
+                                Grille[i][k]=4;
+                            }
+                            else if (Grille[i][k-hauteurTile] == 3)
+                            {
+                                Grille[i][k]=3;
+                            }
+                            else if (Grille[i][k-hauteurTile] == 2)
+                            {
+                                Grille[i][k]=2;
+                            }
+                            else if (Grille[i][k-hauteurTile] == 1)
                             {
                                 Grille[i][k]=1;
                             }
-                            if (Grille[i][k-hauteurTile] == 0)
+                            else if (Grille[i][k-hauteurTile] == 0)
                             {
                                 Grille[i][k]=0;
                             }
@@ -264,16 +298,11 @@ int main ( int argc, char** argv )
         {
             for(j=0;j<Y_SCREEN;j=j+hauteurTile)
             {
-                if(Grille[i][j] == 1)
-                {
-                    dessineImage(ecran,i,j,cube);
-                }
+                AffichageTetrominoMemoire(ecran,color,Grille[i][j],i,j,cubeI,cubeO,cubeT,cubeL,cubeJ,cubeZ,cubeS);
             }
         }
-        dessineImage(ecran,xcube1,ycube1,cube);
-        dessineImage(ecran,xcube2,ycube2,cube);
-        dessineImage(ecran,xcube3,ycube3,cube);
-        dessineImage(ecran,xcube4,ycube4,cube);
+        AffichageTetrominoQuiDescent(ecran,color,xcube1,xcube2,xcube3,xcube4,ycube1,ycube2,ycube3,ycube4,cubeI,cubeO,cubeT,cubeL,cubeJ,cubeZ,cubeS);
+
         SDL_Delay(latence);
         // mise à jour de l'affichage
         miseAJourEcran(ecran);
@@ -291,9 +320,16 @@ int main ( int argc, char** argv )
     SDL_Delay(200);
     printf("Votre score %d\n",score);
     // vide des images en mémoire
-    destructionImage(cube);
+    destructionImage(cubeI);
+    destructionImage(cubeO);
+    destructionImage(cubeT);
+    destructionImage(cubeL);
+    destructionImage(cubeJ);
+    destructionImage(cubeZ);
+    destructionImage(cubeS);
     // ferme la fenêtre
     destructionEcran(ecran);
 
     return 0;
 }
+

@@ -19,3 +19,6 @@ int positionXSTetromino(int numero,int X, int etat);
 int positionYSTetromino(int numero,int Y, int etat);
 int Tetrominodescent(int Y, int compte ,int vitesse);
 int compter(int compter,int vitesse);
+int colorTetromino(int ValteurTetromino);
+void AffichageTetrominoQuiDescent(Ecran ecran,int color,int x1,int x2,int x3,int x4,int y1,int y2,int y3,int y4,Image cubeI,Image cubeO,Image cubeT,Image cubeL,Image cubeJ,Image cubeZ,Image cubeS);
+void AffichageTetrominoMemoire(Ecran ecran,int color,int Grille,int i,int j,Image cubeI,Image cubeO,Image cubeT,Image cubeL,Image cubeJ,Image cubeZ,Image cubeS);
