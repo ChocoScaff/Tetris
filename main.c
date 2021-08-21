@@ -65,8 +65,6 @@ int main ( int argc, char** argv )
         {
             fin=0;
         }
-
-
         if (etatClavier[SDL_SCANCODE_RIGHT])
         {
             SDL_Delay(50);
@@ -157,6 +155,7 @@ int main ( int argc, char** argv )
             }
             SDL_Delay(50);
         }
+
         if (etatClavier[SDL_SCANCODE_SPACE])
         {
             SDL_Delay(150);
@@ -191,6 +190,68 @@ int main ( int argc, char** argv )
             xcube3=positionXTetromino(tetromino,3,xcube1,etat);
             xcube4=positionXTetromino(tetromino,4,xcube1,etat);
         }
+
+        if (etatClavier[SDL_SCANCODE_UP])
+        {
+            do
+            {
+                for(i=0;i<X_SCREEN;i=i+largeurTile)
+                {
+                    for(j=0;j<Y_SCREEN;j=j+hauteurTile)
+                    {
+                        if (Grille[i][j] == 1 || Grille[i][j] == 2 || Grille[i][j] == 3 || Grille[i][j] == 4 || Grille[i][j] == 5 || Grille[i][j] == 6 || Grille[i][j] == 7)
+                        {
+                            if ((ycube1 == j && xcube1 == i ) )//|| (ycube2 == j+hauteurTile && xcube2 == i) || (ycube3 == j+hauteurTile && xcube3 == i) || (ycube4 == j+hauteurTile && xcube4 == i))
+                            {
+                                etat2=1;
+                                ycube1=ycube1-hauteurTile;
+                                ycube2=positionYTetromino(tetromino,2,ycube1,etat);
+                                ycube3=positionYTetromino(tetromino,3,ycube1,etat);
+                                ycube4=positionYTetromino(tetromino,4,ycube1,etat);
+                            }
+                            if (ycube2 == j && xcube2 == i)
+                            {
+                                etat2=1;
+                                ycube1=ycube1-hauteurTile;
+                                ycube2=positionYTetromino(tetromino,2,ycube1,etat);
+                                ycube3=positionYTetromino(tetromino,3,ycube1,etat);
+                                ycube4=positionYTetromino(tetromino,4,ycube1,etat);
+                            }
+                            if (ycube3 == j && xcube3 == i)
+                            {
+                                etat2=1;
+                                ycube1=ycube1-hauteurTile;
+                                ycube2=positionYTetromino(tetromino,2,ycube1,etat);
+                                ycube3=positionYTetromino(tetromino,3,ycube1,etat);
+                                ycube4=positionYTetromino(tetromino,4,ycube1,etat);
+                            }
+                            if (ycube4 == j && xcube4 == i)
+                            {
+                                etat2=1;
+                                ycube1=ycube1-hauteurTile;
+                                ycube2=positionYTetromino(tetromino,2,ycube1,etat);
+                                ycube3=positionYTetromino(tetromino,3,ycube1,etat);
+                                ycube4=positionYTetromino(tetromino,4,ycube1,etat);
+                            }
+                        }
+                    }
+                }
+
+                if ((ycube1 == Y_SCREEN) || (ycube2 == Y_SCREEN) || (ycube3 == Y_SCREEN) || (ycube4 == Y_SCREEN))
+                {
+                    etat2=1;
+                    ycube1=ycube1-hauteurTile;
+                }
+                ycube1=ycube1+hauteurTile;
+                ycube2=positionYTetromino(tetromino,2,ycube1,etat);
+                ycube3=positionYTetromino(tetromino,3,ycube1,etat);
+                ycube4=positionYTetromino(tetromino,4,ycube1,etat);
+                //SDL_Delay();
+            }
+            while(etat2==0);
+            SDL_Delay(200);
+        }
+
         for(i=0;i<X_SCREEN;i=i+largeurTile)
         {
             for(j=0;j<Y_SCREEN;j=j+hauteurTile)
