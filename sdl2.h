@@ -12,9 +12,11 @@ typedef SDL_Renderer* Ecran;
 
 extern const Uint8 *etatClavier;
 
+
 Ecran creationEcran(void);
 Image creationImage(char *fichier);
 void dessineImage(Ecran ecran, int x, int y, Image image);
+void dessineTetromino(Ecran ecran, int x, int y, Image image,int largeur);
 void effaceEcran(Ecran ecran);
 void miseAJourEcran(Ecran ecran);
 int largImage(Image image);

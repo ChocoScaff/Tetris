@@ -518,87 +518,87 @@ int colorTetromino(int valeurTetromino)
     return valeurTetromino;
 }
 
-void AffichageTetrominoQuiDescent(Ecran ecran,int color,int x1,int x2,int x3,int x4,int y1,int y2,int y3,int y4,Image cubeI,Image cubeO,Image cubeT,Image cubeL,Image cubeJ,Image cubeZ,Image cubeS)
+void AffichageTetrominoQuiDescent(Ecran ecran,int color,int x1,int x2,int x3,int x4,int y1,int y2,int y3,int y4,Image cubesheet)
 {
     if (color ==1)
     {
-        dessineImage(ecran,x1,y1,cubeI);
-        dessineImage(ecran,x2,y2,cubeI);
-        dessineImage(ecran,x3,y3,cubeI);
-        dessineImage(ecran,x4,y4,cubeI);
+        dessineTetromino(ecran,x1,y1,cubesheet,color);
+        dessineTetromino(ecran,x2,y2,cubesheet,color);
+        dessineTetromino(ecran,x3,y3,cubesheet,color);
+        dessineTetromino(ecran,x4,y4,cubesheet,color);
     }
     else if (color == 2)
     {
-        dessineImage(ecran,x1,y1,cubeO);
-        dessineImage(ecran,x2,y2,cubeO);
-        dessineImage(ecran,x3,y3,cubeO);
-        dessineImage(ecran,x4,y4,cubeO);
+        dessineTetromino(ecran,x1,y1,cubesheet,color);
+        dessineTetromino(ecran,x2,y2,cubesheet,color);
+        dessineTetromino(ecran,x3,y3,cubesheet,color);
+        dessineTetromino(ecran,x4,y4,cubesheet,color);
     }
     else if (color == 3)
     {
-        dessineImage(ecran,x1,y1,cubeT);
-        dessineImage(ecran,x2,y2,cubeT);
-        dessineImage(ecran,x3,y3,cubeT);
-        dessineImage(ecran,x4,y4,cubeT);
+        dessineTetromino(ecran,x1,y1,cubesheet,color);
+        dessineTetromino(ecran,x2,y2,cubesheet,color);
+        dessineTetromino(ecran,x3,y3,cubesheet,color);
+        dessineTetromino(ecran,x4,y4,cubesheet,color);
     }
     else if (color == 4)
     {
-        dessineImage(ecran,x1,y1,cubeL);
-        dessineImage(ecran,x2,y2,cubeL);
-        dessineImage(ecran,x3,y3,cubeL);
-        dessineImage(ecran,x4,y4,cubeL);
+        dessineTetromino(ecran,x1,y1,cubesheet,color);
+        dessineTetromino(ecran,x2,y2,cubesheet,color);
+        dessineTetromino(ecran,x3,y3,cubesheet,color);
+        dessineTetromino(ecran,x4,y4,cubesheet,color);
     }
     else if (color == 5)
     {
-        dessineImage(ecran,x1,y1,cubeJ);
-        dessineImage(ecran,x2,y2,cubeJ);
-        dessineImage(ecran,x3,y3,cubeJ);
-        dessineImage(ecran,x4,y4,cubeJ);
+        dessineTetromino(ecran,x1,y1,cubesheet,color);
+        dessineTetromino(ecran,x2,y2,cubesheet,color);
+        dessineTetromino(ecran,x3,y3,cubesheet,color);
+        dessineTetromino(ecran,x4,y4,cubesheet,color);
     }
     else if (color == 6)
     {
-        dessineImage(ecran,x1,y1,cubeZ);
-        dessineImage(ecran,x2,y2,cubeZ);
-        dessineImage(ecran,x3,y3,cubeZ);
-        dessineImage(ecran,x4,y4,cubeZ);
+        dessineTetromino(ecran,x1,y1,cubesheet,color);
+        dessineTetromino(ecran,x2,y2,cubesheet,color);
+        dessineTetromino(ecran,x3,y3,cubesheet,color);
+        dessineTetromino(ecran,x4,y4,cubesheet,color);
     }
     else if (color == 7)
     {
-        dessineImage(ecran,x1,y1,cubeS);
-        dessineImage(ecran,x2,y2,cubeS);
-        dessineImage(ecran,x3,y3,cubeS);
-        dessineImage(ecran,x4,y4,cubeS);
+        dessineTetromino(ecran,x1,y1,cubesheet,color);
+        dessineTetromino(ecran,x2,y2,cubesheet,color);
+        dessineTetromino(ecran,x3,y3,cubesheet,color);
+        dessineTetromino(ecran,x4,y4,cubesheet,color);
     }
 }
 
-void AffichageTetrominoMemoire(Ecran ecran,int color,int Grille,int i,int j,Image cubeI,Image cubeO,Image cubeT,Image cubeL,Image cubeJ,Image cubeZ,Image cubeS)
+void AffichageTetrominoMemoire(Ecran ecran,int color,int Grille,int i,int j,Image cubesheet)
 {
     if(Grille == 1)
     {
-        dessineImage(ecran,i,j,cubeI);
+        dessineTetromino(ecran,i,j,cubesheet,Grille);
     }
     else if (Grille == 2)
     {
-        dessineImage(ecran,i,j,cubeO);
+        dessineTetromino(ecran,i,j,cubesheet,Grille);
     }
     else if (Grille == 3)
     {
-        dessineImage(ecran,i,j,cubeT);
+        dessineTetromino(ecran,i,j,cubesheet,Grille);
     }
     else if (Grille == 4)
     {
-        dessineImage(ecran,i,j,cubeL);
+        dessineTetromino(ecran,i,j,cubesheet,Grille);
     }
     else if (Grille == 5)
     {
-        dessineImage(ecran,i,j,cubeJ);
+        dessineTetromino(ecran,i,j,cubesheet,Grille);
     }
     else if (Grille == 6)
     {
-        dessineImage(ecran,i,j,cubeZ);
+        dessineTetromino(ecran,i,j,cubesheet,Grille);
     }
     else if (Grille == 7)
     {
-        dessineImage(ecran,i,j,cubeS);
+        dessineTetromino(ecran,i,j,cubesheet,Grille);
     }
 }

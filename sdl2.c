@@ -80,6 +80,25 @@ void dessineImage(Ecran ecran, int x, int y, Image image)
     SDL_DestroyTexture(texture);
 }
 
+void dessineTetromino(Ecran ecran, int x, int y, Image image,int largeur)
+{
+    SDL_Rect dstrect;
+    SDL_Rect srcrect;
+    dstrect.x = x;
+    dstrect.y = y;
+    dstrect.w = 40;
+    dstrect.h = 40;
+
+    srcrect.x = 40*largeur-40;
+    srcrect.y = 0;
+    srcrect.w = 40;
+    srcrect.h = 40;
+
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(ecran, image);
+    SDL_RenderCopy(ecran, texture, &srcrect, &dstrect);
+    SDL_DestroyTexture(texture);
+}
+
 void effaceEcran(Ecran ecran)
 {
     SDL_SetRenderDrawColor(ecran, 0x00, 0x00, 0x00, 0xFF);

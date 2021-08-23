@@ -32,13 +32,7 @@ int main ( int argc, char** argv )
     miseAJourEcran(ecran);
     effaceEcran(ecran);
 
-    Image cubeI = creationImage("Ressource/cubeI.bmp");
-    Image cubeJ = creationImage("Ressource/cubeJ.bmp");
-    Image cubeL = creationImage("Ressource/cubeL.bmp");
-    Image cubeO = creationImage("Ressource/cubeO.bmp");
-    Image cubeS = creationImage("Ressource/cubeS.bmp");
-    Image cubeT = creationImage("Ressource/cubeT.bmp");
-    Image cubeZ = creationImage("Ressource/cubeZ.bmp");
+    Image cubeSheet = creationImage("Ressource/cube_sheet.bmp");
 
     while(continuer == 1 && fin == 1)
     {
@@ -348,10 +342,10 @@ int main ( int argc, char** argv )
         {
             for(j=0;j<Y_SCREEN;j=j+hauteurTile)
             {
-                AffichageTetrominoMemoire(ecran,color,Grille[i][j],i,j,cubeI,cubeO,cubeT,cubeL,cubeJ,cubeZ,cubeS);
+                AffichageTetrominoMemoire(ecran,color,Grille[i][j],i,j,cubeSheet);
             }
         }
-        AffichageTetrominoQuiDescent(ecran,color,xcube1,xcube2,xcube3,xcube4,ycube1,ycube2,ycube3,ycube4,cubeI,cubeO,cubeT,cubeL,cubeJ,cubeZ,cubeS);
+        AffichageTetrominoQuiDescent(ecran,color,xcube1,xcube2,xcube3,xcube4,ycube1,ycube2,ycube3,ycube4,cubeSheet);
 
         SDL_Delay(latence);
         // mise à jour de l'affichage
@@ -370,14 +364,8 @@ int main ( int argc, char** argv )
     SDL_Delay(200);
     printf("Votre score %d\n",score);
     // vide des images en mémoire
-    destructionImage(cubeI);
-    destructionImage(cubeO);
-    destructionImage(cubeT);
-    destructionImage(cubeL);
-    destructionImage(cubeJ);
-    destructionImage(cubeZ);
-    destructionImage(cubeS);
-    // ferme la fenêtre
+    destructionImage(cubeSheet);
+
     destructionEcran(ecran);
 
     return 0;
